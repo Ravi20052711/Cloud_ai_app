@@ -12,8 +12,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Ensure data directory exists for SQLite
+RUN mkdir -p /app/data
+
 # Environment variables will be overridden by docker-compose
-ENV DATABASE_URL=sqlite:///./notify_ai.db
+ENV DATABASE_URL=sqlite:///./data/notify_ai.db
 ENV OLLAMA_BASE_URL=http://ollama:11434
 
 EXPOSE 8000
